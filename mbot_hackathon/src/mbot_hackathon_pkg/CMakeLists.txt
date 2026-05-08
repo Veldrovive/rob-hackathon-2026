@@ -24,6 +24,7 @@ install(PROGRAMS
   nodes/test_speech_to_text_node.py
   nodes/test_text_to_speech_node.py
   nodes/text_to_speech_node.py
+  nodes/speech_to_text_node.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

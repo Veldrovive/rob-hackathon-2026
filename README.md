@@ -126,6 +126,7 @@ git clone https://github.com/Veldrovive/rob-hackathon-2026.git
 cd ./rob-hackathon-2026/mbot_hackathon_lib
 python3 -m pip install -e . --break-system-packages
 python3 -m pip install pyttsx3 --break-system-packages
+python3 -m pip install SpeechRecognition pyaudio pydub --break-system-packages
 ```
 
 ```bash
@@ -169,4 +170,9 @@ For real
 ```bash
 source install/setup.bash
 ros2 run mbot_hackathon_pkg text_to_speech_node.py
+```
+
+```bash
+source install/setup.bash
+ros2 run mbot_hackathon_pkg speech_to_text_node.py
 ```
