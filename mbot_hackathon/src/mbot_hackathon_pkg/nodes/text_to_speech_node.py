@@ -18,8 +18,7 @@ class MultilingualTTSNode(Node):
         
         self.engine = pyttsx3.init()
         self.engine.setProperty('rate', 140) # Keep it slow and robotic
-        
-        # Default to English, but you can change this
+
         self.set_language('en') 
         
         self.srv = self.create_service(TextToSpeech, 'text_to_speech', self.tts_callback)
@@ -33,8 +32,9 @@ class MultilingualTTSNode(Node):
         voices = self.engine.getProperty('voices')
         
         for voice in voices:
-            # espeak voice IDs often look like 'spanish' or 'es' depending on the OS
             if language_code in voice.languages or language_code in voice.id:
+                if language_code == "es" and "merican" not in voice.name:
+                    continue
                 self.engine.setProperty('voice', voice.id)
                 self.get_logger().info(f"Voice changed to: {voice.name} ({language_code})")
                 return True
