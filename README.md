@@ -126,7 +126,7 @@ git clone https://github.com/Veldrovive/rob-hackathon-2026.git
 cd ./rob-hackathon-2026/mbot_hackathon_lib
 python3 -m pip install -e . --break-system-packages
 python3 -m pip install pyttsx3 --break-system-packages
-python3 -m pip install SpeechRecognition pyaudio pydub --break-system-packages
+python3 -m pip install SpeechRecognition pyaudio keyboard --break-system-packages
 ```
 
 ```bash
