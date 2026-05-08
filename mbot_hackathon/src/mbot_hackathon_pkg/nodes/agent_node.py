@@ -2,7 +2,7 @@
 import rclpy
 from rclpy.node import Node
 
-from mbot_hackathon_lib.agent import Agent
+from mbot_hackathon.agent import Agent
 
 try:
     from mbot_hackathon_pkg.srv import GetCommands

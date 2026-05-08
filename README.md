@@ -1,5 +1,5 @@
 ```bash
-apt update && apt install python3-pip -y
+sudo apt update && sudo apt install python3-pip -y
 ```
 
 ```bash
@@ -59,9 +59,63 @@ echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
 
+```bash
+sudo apt install python3-colcon-common-extensions -y
+```
+
 check the install
 ```bash
 ros2 run demo_nodes_cpp talker
 # In another window
 ros2 run demo_nodes_cpp listener
+```
+
+Install dev essentails
+```bash
+sudo apt update
+sudo apt install -y git build-essential
+```
+
+```bash
+sudo apt install -y libssl-dev zlib1g-dev libbz2-dev libreadline-dev \
+libsqlite3-dev curl libncursesw5-dev xz-utils tk-dev libxml2-dev \
+libxmlsec1-dev libffi-dev liblzma-dev
+```
+
+```bash
+curl https://pyenv.run | bash
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+```
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+```bash
+sudo apt update && sudo apt install python3-pip -y
+```
+
+Installing the mbot hackathon project
+```bash
+git clone https://github.com/Veldrovive/rob-hackathon-2026.git
+```
+
+```bash
+cd ./rob-hackathon-2026/mbot_hackathon_lib
+python3 -m pip install -e . --break-system-packages
+```
+
+```bash
+cd ./rob-hackathon-2026/mbot_hackathon
+colcon build
+```
+
+```bash
+source install/setup.bash
+```
+
+```bash
+ros2 run mbot_hackathon_pkg agent_node.py
 ```
