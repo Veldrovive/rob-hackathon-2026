@@ -14,11 +14,15 @@ find_package(rosidl_default_generators REQUIRED)
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Command.msg"
   "srv/GetCommands.srv"
+  "srv/TextToSpeech.srv"
 )
 
 # Install the nodes
 install(PROGRAMS
   nodes/agent_node.py
+  nodes/manager_node.py
+  nodes/test_speech_to_text_node.py
+  nodes/test_text_to_speech_node.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
