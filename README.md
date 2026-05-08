@@ -129,6 +129,11 @@ python3 -m pip install pyttsx3 --break-system-packages
 ```
 
 ```bash
+sudo apt update
+sudo apt install espeak alsa-utils -y
+```
+
+```bash
 cd ./rob-hackathon-2026/mbot_hackathon
 colcon build
 ```
