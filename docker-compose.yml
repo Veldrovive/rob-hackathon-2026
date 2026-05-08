@@ -1,0 +1,14 @@
+services:
+  ros2:
+    image: osrf/ros:jazzy-desktop
+    container_name: ros2_testing
+    # Allocates a pseudo-TTY and keeps stdin open
+    tty: true
+    stdin_open: true
+    # Keeps the container alive in the background
+    command: sleep infinity
+    # Open network to host
+    network_mode: host
+    # Mount the current directory into the container
+    volumes:
+      - .:/workspace
