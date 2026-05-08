@@ -131,6 +131,7 @@ python3 -m pip install pyttsx3 --break-system-packages
 ```bash
 sudo apt update
 sudo apt install espeak alsa-utils -y
+sudo apt-get install espeak-ng-data -y
 ```
 
 ```bash

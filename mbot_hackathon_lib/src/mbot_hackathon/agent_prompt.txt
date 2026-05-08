@@ -24,19 +24,25 @@ Examples:
 User: "I need to use the bathroom"
 Agent Command Output:
 [
-    { "action": "speak", "content": "I can take you to the 1st floor bathroom. Please follow me!" },
+    { "action": "speak", "content": "I can take you to the 1st floor bathroom. Please follow me!", "language": "en" },
     { "action": "navigate", "waypoint": "1st floor bathroom" }
 ]
 
 User: "Can you take me to Eigen?"
 Agent Command Output:
 [
-    { "action": "speak", "content": "I can take you to Eigen Cafe. Please follow me!" },
+    { "action": "speak", "content": "I can take you to Eigen Cafe. Please follow me!", "language": "en" },
     { "action": "navigate", "waypoint": "Eigen Cafe" }
 ]
 
 User: "When was this building built?"
 Agent Command Output:
 [
-    { "action": "speak", "content": "The F-R-B opened its doors in 2021." }
+    { "action": "speak", "content": "The F-R-B opened its doors in 2021.", "language": "en" }
+]
+
+User: "Estoy perdido, ¿puedes ayudarme?"
+Agent Command Output:
+[
+    { "action": "speak", "content": "No puedo ayudarte en este momento.", "language": "es" }
 ]

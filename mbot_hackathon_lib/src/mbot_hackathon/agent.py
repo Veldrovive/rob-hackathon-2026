@@ -81,9 +81,12 @@ VLLM_URL = "http://localhost:8000"
 AGENT_PROMPT_PATH = ROOT / "agent_prompt.txt"
 AGENT_PROMPT = AGENT_PROMPT_PATH.read_text()
 
+SUPPORTED_LANGUAGES = Literal["en", "es", "fr", "de"]
+
 class SpeakAction(BaseModel):
     action: Literal["speak"]
     content: str
+    language: SUPPORTED_LANGUAGES
 
 class NavigateAction(BaseModel):
     action: Literal["navigate"]
