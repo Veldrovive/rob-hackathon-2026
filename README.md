@@ -97,6 +97,26 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 sudo apt update && sudo apt install python3-pip -y
 ```
 
+```bash
+sudo apt install -y openssh-server
+sudo systemctl enable --now ssh
+```
+
+Getting the port forwarded
+```bash
+sudo apt install -y openssh-server
+sudo systemctl enable --now ssh
+```
+
+```bash
+ifconfig
+```
+Get the ip
+
+```bash
+ssh -R 8000:localhost:8000 <vm_username>@<vm_ip>
+```
+
 Installing the mbot hackathon project
 ```bash
 git clone https://github.com/Veldrovive/rob-hackathon-2026.git
@@ -105,6 +125,7 @@ git clone https://github.com/Veldrovive/rob-hackathon-2026.git
 ```bash
 cd ./rob-hackathon-2026/mbot_hackathon_lib
 python3 -m pip install -e . --break-system-packages
+python3 -m pip install pyttsx3 --break-system-packages
 ```
 
 ```bash
@@ -117,5 +138,28 @@ source install/setup.bash
 ```
 
 ```bash
+source install/setup.bash
 ros2 run mbot_hackathon_pkg agent_node.py
+```
+
+```bash
+source install/setup.bash
+ros2 run mbot_hackathon_pkg manager_node.py
+```
+
+For testing
+```bash
+source install/setup.bash
+ros2 run mbot_hackathon_pkg test_speech_to_text_node.py
+```
+
+```bash
+source install/setup.bash
+ros2 run mbot_hackathon_pkg test_text_to_speech_node.py
+```
+
+For real
+```bash
+source install/setup.bash
+ros2 run mbot_hackathon_pkg text_to_speech_node.py
 ```
