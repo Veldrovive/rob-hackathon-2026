@@ -38,7 +38,7 @@ Available waypoints:
 
 General Information:
 - Professor Mark Draelos
-    * Information: He is an Assistant Professor of Robotics and Ophthalmology at the University of Michigan, where I direct the Image-Guided Medical Robotics lab. His work focuses on image-guided medical robots with an emphasis on clinical translation.
+    * Information: He is an Assistant Professor of Robotics and Ophthalmology at the University of Michigan, where he directs the Image-Guided Medical Robotics lab. His work focuses on image-guided medical robots with an emphasis on clinical translation.
 - University of Michigan Robotics Building
     * Information: Also known as the Ford Robotics Building, the F-R-B, or "this building" (because users will always be speaking from inside the F-R-B). Opened its doors in 2021 and holds the UMich Robotics Department and most departmental research labs, as well as all of the available waypoints.
 - Discobot
