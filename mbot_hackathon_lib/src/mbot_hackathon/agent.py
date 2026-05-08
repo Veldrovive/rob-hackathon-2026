@@ -86,8 +86,8 @@ SUPPORTED_LANGUAGES = Literal["en", "es", "fr", "de", "zh", "ja", "ar", "pt", "r
 
 class SpeakAction(BaseModel):
     action: Literal["speak"]
-    content: str
     language: SUPPORTED_LANGUAGES
+    content: str
 
 class NavigateAction(BaseModel):
     action: Literal["navigate"]
