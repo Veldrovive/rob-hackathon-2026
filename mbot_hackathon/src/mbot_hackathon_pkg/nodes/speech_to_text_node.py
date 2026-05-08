@@ -30,6 +30,12 @@ class SpeechToTextNode(Node):
         self.frames = []
         self.stream = None
         
+        self.device_index = self._get_usb_device_index()
+        if self.device_index is not None:
+            self.get_logger().info(f'Using USB audio device at index {self.device_index}')
+        else:
+            self.get_logger().warn('No USB audio device found, using system default')
+        
         # Start keyboard monitoring thread
         self.keyboard_thread = threading.Thread(target=self.keyboard_loop, daemon=True)
         self.keyboard_thread.start()
@@ -67,14 +73,32 @@ class SpeechToTextNode(Node):
             except Exception as e:
                 self.get_logger().error(f'Keyboard error: {e}')
 
+    def _get_usb_device_index(self):
+        """Find the index of the USB audio input device."""
+        for i in range(self.p.get_device_count()):
+            try:
+                dev_info = self.p.get_device_info_by_index(i)
+                if dev_info.get('maxInputChannels', 0) > 0:
+                    if 'USB' in dev_info.get('name', ''):
+                        return i
+            except Exception:
+                pass
+        return None
+
     def record_audio(self):
         """Record audio while recording flag is True."""
         try:
-            self.stream = self.p.open(format=pyaudio.paInt16,
-                                      channels=1,
-                                      rate=16000,
-                                      input=True,
-                                      frames_per_buffer=1024)
+            kwargs = {
+                'format': pyaudio.paInt16,
+                'channels': 1,
+                'rate': 16000,
+                'input': True,
+                'frames_per_buffer': 1024
+            }
+            if self.device_index is not None:
+                kwargs['input_device_index'] = self.device_index
+
+            self.stream = self.p.open(**kwargs)
             while self.recording and rclpy.ok():
                 data = self.stream.read(1024, exception_on_overflow=False)
                 self.frames.append(data)

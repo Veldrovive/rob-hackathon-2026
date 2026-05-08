@@ -100,11 +100,30 @@ class ManagerNode(Node):
             
         elif command.action == 'navigate':
             self.get_logger().info(f'Executing navigate command to waypoint: "{command.waypoint}"')
-            msg = String()
-            msg.data = command.waypoint
-            self.nav_pub.publish(msg)
-            # Navigation is a topic, continue immediately to next command
-            self.execute_next_command()
+            
+            def nav_callback(future):
+                try:
+                    future.result()
+                except Exception as e:
+                    self.get_logger().error(f'TTS service call failed: {e}')
+                
+                msg = String()
+                msg.data = command.waypoint
+                self.nav_pub.publish(msg)
+                self.execute_next_command()
+
+            if self.tts_client.wait_for_service(timeout_sec=1.0):
+                request = TextToSpeech.Request()
+                request.text = f"Navigating to {command.waypoint}"
+                request.language = "en"
+                future = self.tts_client.call_async(request)
+                future.add_done_callback(nav_callback)
+            else:
+                self.get_logger().warn('TextToSpeech service not available for announcement.')
+                msg = String()
+                msg.data = command.waypoint
+                self.nav_pub.publish(msg)
+                self.execute_next_command()
             
         else:
             self.get_logger().warn(f'Unknown command action: {command.action}')

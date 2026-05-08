@@ -126,14 +126,9 @@ git clone https://github.com/Veldrovive/rob-hackathon-2026.git
 cd ./rob-hackathon-2026/mbot_hackathon_lib
 python3 -m pip install -e . --break-system-packages
 python3 -m pip install pyttsx3 --break-system-packages
-<<<<<<< HEAD
-python3 -m pip install SpeechRecognition pyaudio keyboard --break-system-packages
-||||||| parent of e0d7e89 (Added secret basement)
-python3 -m pip install SpeechRecognition pyaudio pydub --break-system-packages
-=======
 sudo apt-get install portaudio19-dev libasound-dev -y
-python3 -m pip install SpeechRecognition pyaudio pydub keyboard --break-system-packages
->>>>>>> e0d7e89 (Added secret basement)
+sudo apt-get install flac -y
+python3 -m pip install SpeechRecognition pyaudio pydub --break-system-packages
 ```
 
 ```bash
