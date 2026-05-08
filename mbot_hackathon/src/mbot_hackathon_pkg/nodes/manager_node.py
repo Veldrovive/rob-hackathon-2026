@@ -86,7 +86,7 @@ class ManagerNode(Node):
         command = self.command_queue.pop(0)
         
         if command.action == 'speak':
-            self.get_logger().info(f'Executing speak command: "{command.content}"')
+            self.get_logger().info(f'Executing speak command: "{command.content}" in language {command.language}')
             if not self.tts_client.wait_for_service(timeout_sec=5.0):
                 self.get_logger().error('TextToSpeech service not available, skipping.')
                 self.execute_next_command()
@@ -94,6 +94,7 @@ class ManagerNode(Node):
                 
             request = TextToSpeech.Request()
             request.text = command.content
+            request.language = command.language
             future = self.tts_client.call_async(request)
             future.add_done_callback(self.tts_response_callback)
             

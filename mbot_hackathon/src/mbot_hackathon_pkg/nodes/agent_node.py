@@ -41,15 +41,17 @@ class AgentServiceNode(Node):
                 if action.action == "speak":
                     cmd_msg.content = action.content
                     cmd_msg.waypoint = ""
+                    cmd_msg.language = action.language
                 elif action.action == "navigate":
                     cmd_msg.waypoint = action.waypoint
                     cmd_msg.content = ""
+                    cmd_msg.language = "en"
                 
                 response.commands.append(cmd_msg)
                 
         except Exception as e:
             self.get_logger().error(f'Error processing prompt: {e}')
-            
+        self.get_logger().info(f'Response: {response.commands}')
         return response
 
 def main(args=None):
