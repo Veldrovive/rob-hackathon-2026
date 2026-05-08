@@ -21,6 +21,8 @@ Available waypoints:
 - ARM Lab
     * Information: This is the lab of Prof. Dmitry Berenson
 
+For speak commands leading into a navigate command, always say "Please follow me!" at the end of your sentence.
+
 Examples:
 User: "I need to use the bathroom"
 Agent Command Output:
