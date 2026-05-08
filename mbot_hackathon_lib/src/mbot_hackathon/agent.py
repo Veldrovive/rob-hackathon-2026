@@ -76,7 +76,7 @@ from openai import OpenAI
 
 from mbot_hackathon.definitions import ROOT
 
-VLLM_URL = "http://localhost:8000"
+VLLM_URL = "http://localhost:8001"
 # VLLM_URL = "http://host.docker.internal:8000"
 AGENT_PROMPT_PATH = ROOT / "agent_prompt.txt"
 AGENT_PROMPT = AGENT_PROMPT_PATH.read_text()
