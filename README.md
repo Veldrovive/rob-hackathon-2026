@@ -143,14 +143,15 @@ colcon build
 source install/setup.bash
 ```
 
+Spin up all the nodes
 ```bash
 source install/setup.bash
-ros2 run mbot_hackathon_pkg agent_node.py
+ros2 run mbot_hackathon_pkg manager_node.py
 ```
 
 ```bash
 source install/setup.bash
-ros2 run mbot_hackathon_pkg manager_node.py
+ros2 run mbot_hackathon_pkg agent_node.py
 ```
 
 For testing
