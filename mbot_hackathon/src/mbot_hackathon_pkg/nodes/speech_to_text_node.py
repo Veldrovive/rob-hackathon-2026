@@ -12,7 +12,10 @@ from std_msgs.msg import String
 import threading
 import speech_recognition as sr
 import pyaudio
-import keyboard
+import sys
+import tty
+import termios
+import select
 
 class SpeechToTextNode(Node):
     def __init__(self):
@@ -33,20 +36,34 @@ class SpeechToTextNode(Node):
 
     def keyboard_loop(self):
         """Monitor spacebar presses to toggle recording."""
+        def getch():
+            fd = sys.stdin.fileno()
+            old_settings = termios.tcgetattr(fd)
+            try:
+                tty.setcbreak(sys.stdin.fileno())
+                while rclpy.ok():
+                    i, o, e = select.select([sys.stdin], [], [], 0.1)
+                    if i:
+                        return sys.stdin.read(1)
+            finally:
+                termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+            return None
+
         while rclpy.ok():
             try:
-                keyboard.wait('space')
-                if self.recording:
-                    self.recording = False
-                    self.get_logger().info('Stopped recording')
-                    # Process the recorded audio
-                    self.process_audio()
-                else:
-                    self.recording = True
-                    self.frames = []
-                    self.get_logger().info('Started recording')
-                    # Start recording thread
-                    threading.Thread(target=self.record_audio, daemon=True).start()
+                ch = getch()
+                if ch == ' ':
+                    if self.recording:
+                        self.recording = False
+                        self.get_logger().info('Stopped recording')
+                        # Process the recorded audio
+                        self.process_audio()
+                    else:
+                        self.recording = True
+                        self.frames = []
+                        self.get_logger().info('Started recording')
+                        # Start recording thread
+                        threading.Thread(target=self.record_audio, daemon=True).start()
             except Exception as e:
                 self.get_logger().error(f'Keyboard error: {e}')
 
