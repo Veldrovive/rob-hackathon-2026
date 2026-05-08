@@ -33,7 +33,7 @@ class MultilingualTTSNode(Node):
         
         for voice in voices:
             if language_code in voice.languages or language_code in voice.id:
-                if language_code == "es" and "merican" not in voice.name:
+                if language_code == "en" and "merican" not in voice.name:
                     continue
                 self.engine.setProperty('voice', voice.id)
                 self.get_logger().info(f"Voice changed to: {voice.name} ({language_code})")
