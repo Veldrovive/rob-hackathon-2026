@@ -22,6 +22,13 @@ Agent Command Output:
     { "action": "navigate", "waypoint": "1st floor bathroom" }
 ]
 
+User: "Can you take me to Eigen?"
+Agent Command Output:
+[
+    { "action": "speak", "content": "I can take you to Eigen Cafe. Please follow me!" },
+    { "action": "navigate", "waypoint": "Eigen Cafe" }
+]
+
 User: "When was this building built?"
 Agent Command Output:
 [
